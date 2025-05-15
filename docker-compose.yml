@@ -1,0 +1,17 @@
+name: pocketbase
+
+services:
+  pocketbase:
+    container_name: pocketbase
+    ports:
+      - '3546:3546'
+    build:
+      context: .
+      args:
+        PB_VERSION: 0.28.1
+        PB_PORT: 3546
+    volumes:
+      - ./pb_migrations:/pb/pb_migrations
+      - ./pb_hooks:/pb/pb_hooks
+      - ./pb_data:/pb/pb_data
+    restart: unless-stopped
